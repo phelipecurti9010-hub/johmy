@@ -1,15 +1,172 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!-- Página simples com tema F1
+     Feita para alunos do 1º ano do ensino médio técnico em Informática.
+     Arquivo único: HTML + CSS embutido. Comentários no código explicam as partes.
+-->
+<!doctype html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Meu Primeiro Projeto</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>F1 — Página Modelo (Simples)</title>
+  <style>
+    /* Variáveis de cor e estilo para facilitar entendimento dos alunos */
+    :root{
+      --bg:#0b0b0b;         /* fundo escuro */
+      --accent:#d40000;     /* vermelho "F1" */
+      --muted:#aaaaaa;      /* texto secundário */
+      --card:#111111;       /* cartão/painel */
+      --glass: rgba(255,255,255,0.04);
+      --radius:10px;
+      --maxw:1100px;
+      --gap:16px;
+    }
+
+    /* Reset simples */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg,var(--bg) 0%, #060606 60%);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      line-height:1.4;
+      padding:24px;
+      display:flex;justify-content:center;
+    }
+
+    .wrap{width:100%;max-width:var(--maxw)}
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:var(--gap);margin-bottom:20px
+    }
+
+    /* Logo simples (texto + badge) */
+    .logo{display:flex;align-items:center;gap:12px}
+    .badge{
+      background:linear-gradient(135deg,#fff 0%, #ffe 30%);
+      color:#000;padding:6px 10px;border-radius:8px;font-weight:700;font-size:14px;
+      box-shadow:0 3px 10px rgba(0,0,0,0.5)
+    }
+    .brand{font-size:20px;font-weight:700;letter-spacing:1px}
+    .subtitle{color:var(--muted);font-size:13px}
+
+    nav a{color:var(--muted);text-decoration:none;margin-left:12px;font-weight:600}
+
+    /* Hero */
+    .hero{
+      background: linear-gradient(90deg, rgba(212,0,0,0.12), rgba(255,255,255,0.02));
+      padding:22px;border-radius:var(--radius);display:flex;gap:20px;align-items:center;
+      margin-bottom:18px;box-shadow:0 8px 30px rgba(0,0,0,0.6)
+    }
+
+    .hero-left{flex:1}
+    .hero h1{font-size:28px;margin-bottom:6px}
+    .hero p{color:var(--muted);font-size:14px}
+
+    /* Um pequeno SVG de carro estilizado (inline) */
+    .car{width:220px;height:80px}
+
+    /* Grade de cartões simples */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--gap);margin-top:18px}
+    .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.6)}
+    .card h3{margin-bottom:8px}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* tabela simples (cronograma) */
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{padding:8px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px}
+    th{color:var(--muted);font-weight:600}
+
+    footer{color:var(--muted);font-size:13px;margin-top:20px;text-align:center}
+
+    /* Responsividade */
+    @media (max-width:600px){
+      .hero{flex-direction:column;align-items:flex-start}
+      .car{width:100%;height:56px}
+      header{flex-direction:column;align-items:flex-start;gap:8px}
+    }
+  </style>
 </head>
 <body>
-<h1>Olá, GitHub!</h1>
-<p>Meu primeiro envio para o repositório remoto.</p>
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        <div class="badge">F1</div>
+        <div>
+          <div class="brand">F1 Fan Club</div>
+          <div class="subtitle">Tema educativo — projeto simples</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#pilotos">Pilotos</a>
+        <a href="#equipes">Equipes</a>
+        <a href="#calendario">Calendário</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Entendendo o mundo da Fórmula 1</h1>
+        <p>Esta página é um exemplo simples de HTML & CSS com tema F1 — ideal para aprender estrutura de página, layout e estilos básicos.</p>
+      </div>
+      <!-- desenho SVG simples de um carro para ficar visual sem imagem externa -->
+      <svg class="car" viewBox="0 0 220 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0" y="40" width="220" height="18" rx="6" fill="#111" />
+        <path d="M10 40 C30 20, 70 20, 90 40 L130 40 C150 20, 190 20, 210 40 L210 55 L10 55 Z" fill="#d40000" opacity="0.95" />
+        <circle cx="50" cy="58" r="10" fill="#000" />
+        <circle cx="170" cy="58" r="10" fill="#000" />
+      </svg>
+    </section>
+
+    <main>
+      <div class="grid">
+        <article class="card" id="pilotos">
+          <h3>Pilotos famosos</h3>
+          <p class="muted">Breve explicação do que é um piloto de F1 e exemplos.</p>
+          <ul>
+            <li>Ex.: Lewis Hamilton — campeão e figura conhecida</li>
+            <li>Ex.: Max Verstappen — vencedor recente de grandes corridas</li>
+            <li>Ex.: Estudantes podem pesquisar um piloto e apresentar</li>
+          </ul>
+        </article>
+
+        <article class="card" id="equipes">
+          <h3>Equipes / Construtores</h3>
+          <p class="muted">As equipes constroem os carros e contratam os pilotos.</p>
+          <p>Ex.: Mercedes, Red Bull, Ferrari — cada uma tem cores e patrocinadores.</p>
+        </article>
+
+        <article class="card" id="calendario">
+          <h3>Calendário (exemplo)</h3>
+          <p class="muted">Uma tabela simples com algumas corridas.</p>
+          <table>
+            <thead>
+              <tr><th>Data</th><th>GP</th><th>País</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>22/03</td><td>GP do Bahrein</td><td>Bahrein</td></tr>
+              <tr><td>05/04</td><td>GP da Austrália</td><td>Austrália</td></tr>
+              <tr><td>19/04</td><td>GP do Azerbaijão</td><td>Azerbaijão</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card">
+          <h3>Atividade para a sala</h3>
+          <p class="muted">Exercício prático simples:</p>
+          <ol>
+            <li>Escolha um piloto e pesquise sua carreira.</li>
+            <li>Crie um pequeno resumo (3 parágrafos) e apresente à turma.</li>
+            <li>Faça um mini cartaz em HTML com imagem e texto (opcional).</li>
+          </ol>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      <p>Projeto educativo — exemplo de HTML e CSS. Adaptável e comentado para estudo.</p>
+    </footer>
+  </div>
 </body>
 </html>
-
-
-
-
